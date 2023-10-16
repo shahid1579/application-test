@@ -16,8 +16,8 @@ If you have any questions, please do not hesitate to contact us.
 - start_time
 - end_time
 
-5. Users should be able to start and stop the timer of the tracking tool Introduce a new Controller to allow users to do
-   so.
+5. Users should be able to start and stop the timer of the tracking tool, like usual developers do to track their time. 
+   Introduce a new Controller to allow users to do so. Important: Users shall not be allowed to edit the time after tracking it.
 6. Every Monday we want to send an email to all users that summarizes their time tracking
 7. Think about one more feature you would like to add to the application and implement it
 
