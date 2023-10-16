@@ -1,0 +1,32 @@
+# WELCOME TO THE CPI APPLICATION TEST
+
+We are glad that you are interested in working with us. To get to know you better, we would like to give you a small
+task. Please read the following instructions carefully and complete the tasks while you are recording yourself in loom.
+If you have any questions, please do not hesitate to contact us.
+
+1. Get into the code -
+   Check the code, run it and check the tests
+
+2. Complete the ProjectController with CRUD routes
+3. Write tests for the ProjectController
+4. Introduce a new model: Time Tracking Following attributs the new model must have at least:
+
+- id
+- project_id
+- start_time
+- end_time
+
+5. Users should be able to start and stop the timer of the tracking tool Introduce a new Controller to allow users to do
+   so.
+6. Every Monday we want to send an email to all users that summarizes their time tracking
+7. Think about one more feature you would like to add to the application and implement it
+
+Rules:
+
+- Everything is allowed to complete the tasks
+- You can use any library you want, but you have to justify why you use it
+- Although code is now in Controller, this is not how we want to see it in production. Please refactor it, so that the
+  code is in the right place
+- When you are done, please create a pull request in the GitHub repository and invite us to review it. Make sure that
+  you have your full name in your GitHub - if not, include it in the code or send it via mail reply to the last HR
+  email.
