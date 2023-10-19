@@ -2,14 +2,16 @@
 
 We are glad that you are interested in working with us. To get to know you better, we would like to give you a small
 task. Please read the following instructions carefully and complete the tasks while you are recording yourself in loom.
-If you have any questions, please do not hesitate to contact us.
+If you have any questions, please do not hesitate to contact us. 
+
+*** Please fork this repository and work on your fork. ***
 
 1. Get into the code -
-   Check the code, run it and check the tests
+   Check the code, run it and check the tests with for example `./vendor/bin/sail artisan test`
 
 2. Complete the ProjectController with CRUD routes
 3. Write tests for the ProjectController
-4. Introduce a new model: Time Tracking Following attributs the new model must have at least:
+4. Introduce a new model: Time Tracking - Following attributes the new model must have at least:
 
 - id
 - project_id
