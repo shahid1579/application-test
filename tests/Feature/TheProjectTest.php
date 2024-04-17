@@ -2,11 +2,15 @@
 
 namespace Tests\Feature;
 
-// use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use App\Models\Projects;
+use App\Models\User;
+use Illuminate\Foundation\Testing\WithFaker;
 
 class TheProjectTest extends TestCase
 {
+    use RefreshDatabase;
     protected $email;
     protected $password = 'password';
     protected $authCode;
@@ -36,19 +40,71 @@ class TheProjectTest extends TestCase
 
         $this->authCode = $response->json()['token'];
     }
-
-    /**
-     * Perform a login test.
-     */
-    public function test_update_project(): void
+    /** @test */
+    public function it_can_create_a_project()
     {
-        // Create project + append auth code for login
         $response = $this->withHeaders([
             'Authorization' => 'Bearer ' . $this->authCode,
-        ])->post('/projects', [
-            'name' => 'test',
-            'description' => 'test',
+        ])->postJson('/projects', [
+            'name' => 'Test Project',
+            'description' => 'Test Description',
         ]);
+
         $response->assertStatus(201);
     }
+
+    /** @test */
+    public function it_can_update_a_project()
+    {
+        $project = Projects::factory()->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->authCode,
+        ])->putJson("/projects/{$project->id}", [
+            'name' => 'Updated Project',
+            'description' => 'Updated Description',
+        ]);
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
+    public function it_can_delete_a_project()
+    {
+        $project = Projects::factory()->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->authCode,
+        ])->deleteJson("/projects/{$project->id}");
+
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('projects', ['id' => $project->id]);
+    }
+
+    /** @test */
+    public function it_can_get_all_projects()
+    {
+        $projects = Projects::factory()->count(5)->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->authCode,
+        ])->getJson('/projects');
+
+        $response->assertStatus(200);
+        $response->assertJsonCount(5, 'data');
+    }
+
+        /** @test */
+    public function it_can_get_a_single_project()
+    {
+        $project = Projects::factory()->create();
+
+        $response = $this->withHeaders([
+            'Authorization' => 'Bearer ' . $this->authCode,
+        ])->getJson("/projects/{$project->id}");
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['name' => $project->name]);
+    }
+
 }

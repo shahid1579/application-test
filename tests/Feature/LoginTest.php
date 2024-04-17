@@ -7,6 +7,7 @@ use Tests\TestCase;
 
 class LoginTest extends TestCase
 {
+    use \Illuminate\Foundation\Testing\DatabaseMigrations;
     /**
      * Perform a login test.
      */
@@ -19,7 +20,7 @@ class LoginTest extends TestCase
             'name' => 'test',
             'email' => $email,
             'password' => $password,
-            'password_confirmation' => 'password0',
+            'password_confirmation' => $password,
         ]);
 
         $response->assertStatus(200);
